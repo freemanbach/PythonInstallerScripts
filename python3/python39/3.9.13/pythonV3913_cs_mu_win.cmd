@@ -5,11 +5,14 @@ REM Email         : flo@radford.edu
 REM DESC          : Silent Python Installer for Windows
 REM 32bit path    : https://www.python.org/ftp/python/3.9.13/python-3.9.13.exe
 REM 64bit path    : https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe
-REM Date          : 2022.07.17
+REM Date          : 2022.12.09
 
 set major=3
 set minor=9
 set patch=13
+
+set badmin32=C:\Windows\System32\bitsadmin.exe
+set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
 
 :: Check Admin DOS PROMPT is available
 goto check_permission
@@ -165,7 +168,7 @@ cls
     REM forgot that 32bit Windows has a different location for bitsadmin
     if /i "%processor_architecture%"=="x86" (
         rem check 32bit FTP downloader
-        if exist C:\Windows\System32\bitsadmin.exe (
+        if exist %badmin32% (
             echo. Bitsadmin 32bit is installed on your Windows 7/8/9/10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -177,7 +180,7 @@ cls
         )
     ) else (
         rem check 64bit FTP downloader
-        if exist C:\Windows\SysWOW64\bitsadmin.exe (
+        if exist %badmin64% (
             echo. Bitsadmin 64bit is installed on your Windows 7/8/9/10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -207,10 +210,10 @@ cls
     echo.
     if /i "%processor_architecture%"=="x86" (
             rem Run 32bit downloader
-            C:\Windows\System32\bitsadmin.exe /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
+            %badmin32% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
         ) else (
             rem Run 64bit downloader
-            C:\Windows\SysWOW64\bitsadmin.exe /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
+            %badmin64% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
         )           
     echo. 40%% Completed.
     echo.
@@ -289,7 +292,7 @@ cls
     echo. Compiling and Installing Python Modules
     echo. =======================================
     echo.
-    set num=12
+    set num=15
     for /L %%I IN (1, 1, %num%) do (
         echo. | set /p="%%I " 
         timeout /t 1 > nul
@@ -299,18 +302,27 @@ cls
 :: Check to see if Python was installed 
 :section_10
     echo.
-    if exist C:\Python%major%%minor%%patch%\Tools\pynche\Main.py (
-        echo.
-        echo. Checking whether Python has been installed...
-        echo.
-        echo. Python Software has been Installed.
-        echo.
+    if exist C:\Python%major%%minor%%patch%\python.exe (
+        if exist C:\Python%major%%minor%%patch%\Tools\pynche\Main.py (
+            echo.
+            echo. Checking whether Python has been installed...
+            echo.
+            echo. Python Software has been Installed.
+            echo.
+        ) else (
+            echo.
+            echo. Python has not been installed.
+            echo.
+            echo. Problem with installation.
+            echo. line 306
+            goto end
+        )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. Problem with installation. 
-        echo. line 311
+        echo. Problem with installation.
+        echo. line 305
         echo.
         goto end
     )
@@ -324,8 +336,18 @@ cls
     echo. Updating pip the modules
     echo. ========================
     echo.
-    rem Updating pip on Windows
-    C:\Python%major%%minor%%patch%\python.exe -m pip install --upgrade pip
+    if exist C:\Python%major%%minor%%patch%\Scripts\pip.exe (
+        rem Updating pip on Windows
+        C:\Python%major%%minor%%patch%\python.exe -m pip install --upgrade pip
+        echo. 
+    ) else (
+       echo.  
+       echo.  pip has not been installed.
+       echo.  line 339
+       echo.
+       goto end
+    )
+    echo.
     echo. 75%% Completed.
     echo.
 
