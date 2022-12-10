@@ -292,7 +292,7 @@ cls
     echo. Compiling and Installing Python Modules
     echo. =======================================
     echo.
-    set num=12
+    set num=15
     for /L %%I IN (1, 1, %num%) do (
         echo. | set /p="%%I " 
         timeout /t 1 > nul
@@ -302,18 +302,28 @@ cls
 :: Check to see if Python was installed 
 :section_10
     echo.
-    if exist C:\Python%major%%minor%%patch%\Tools\pynche\Main.py (
-        echo.
-        echo. Checking whether Python has been installed...
-        echo.
-        echo. Python Software has been Installed.
-        echo.
+    if exist C:\Python%major%%minor%%patch%\python.exe (
+        if exist C:\Python%major%%minor%%patch%\Tools\pynche\Main.py (
+            echo.
+            echo. Checking whether Python has been installed...
+            echo.
+            echo. Python Software has been Installed.
+            echo.
+        ) else (
+            echo.
+            echo. Python has not been installed.
+            echo.
+            echo. Problem with installation. 
+            echo. line 306
+            echo.
+            goto end
+        ) 
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. Problem with installation. 
-        echo. line 311
+        echo. Problem with installation.
+        echo. line 305
         echo.
         goto end
     )
@@ -327,8 +337,17 @@ cls
     echo. Updating pip the modules
     echo. ========================
     echo.
-    rem Updating pip on Windows
-    C:\Python%major%%minor%%patch%\python.exe -m pip install --upgrade pip
+    if exist C:\Python%major%%minor%%patch%\Scripts\pip.exe (
+        rem Updating pip on Windows
+        echo.
+        C:\Python%major%%minor%%patch%\python.exe -m pip install --upgrade pip
+        echo.
+    ) else (
+        echo.
+        echo. PIP was not installed.
+        echo. 
+        goto end
+    )
     echo. 75%% Completed.
     echo.
 
@@ -344,7 +363,7 @@ cls
 
 :time_pause2
     echo.
-    timeout /t 2 > nul
+    timeout /t 5 > nul
 
 :: Installing Additional Modules
 :section_13
