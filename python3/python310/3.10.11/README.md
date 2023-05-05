@@ -4,7 +4,7 @@ all the ARM on Windows and M1/M2 Mac devices. The default shell installer for MA
 be used for Intel Mac devices and wont work on ARM/M1/M2 mac devices. These pkg install scripts
 may work for MAC with ARM processors, we have tested on one machine and it worked. 
 
-This is most recent version of Python 3.11.x. When it comes to installing the universal pkg file to ARM processors, 
+This is most recent version of Python 3.10.x. When it comes to installing the universal pkg file to ARM processors, 
 we've tested this on a M1 ARM laptop device. it was deem functional. 
 We recommend that you should run it on a spare M1 or M2 machine and see, if you could activate the python3 executable 
 /Library/Frameworks/Python.framework/Versions/Current/bin
