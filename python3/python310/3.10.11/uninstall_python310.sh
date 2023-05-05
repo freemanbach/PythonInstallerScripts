@@ -10,6 +10,7 @@
 # Uninstall Python 3.10 for Mac
 echo "Uninstalling Python 3.x.x for Mac..."
 
+cd
 rm -fr ./Library/Python
 echo "Required Administrator Password for the following. "
 sudo rm -fr /Library/Frameworks/Python.framework/
