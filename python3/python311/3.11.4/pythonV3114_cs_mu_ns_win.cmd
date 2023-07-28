@@ -408,22 +408,8 @@ cls
     call C:\Users\%USERNAME%\runme.bat
     echo.
 
-:: Create Directories for HW and Labs
-:: You can delete this section
-:section_16
-    echo.
-    echo.============================
-    echo. Creating Directories
-    echo.============================
-    echo.
-    mkdir C:\Users\%USERNAME%\itec109
-    mkdir C:\Users\%USERNAME%\itec109\hws
-    mkdir C:\Users\%USERNAME%\itec109\labs
-    echo. Directories were Created
-    echo.
-
 :: Run Python
-:section_17
+:section_16
     echo.
     echo.
     python -c "print(\"Welcome, Python installation Success.\")"
@@ -431,7 +417,7 @@ cls
     echo.
     echo.
 
-:section_18
+:section_17
     echo.
     echo. 100%% Completed !
     echo.
