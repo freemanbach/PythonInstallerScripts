@@ -147,9 +147,10 @@ cls
     rem You may need to press ENTER, If the wait time is more than 10 seconds.
     echo.
     echo. You may need to press ENTER, 
-    echo. If the wait time is more than 10 seconds.
+    echo. If the wait time is more than 20 seconds.
     echo. if it crashed, Press CTRL-C or something.
     echo. Continuing...................
+    echo. .............................
     echo.
 
 :time_pause2
@@ -175,7 +176,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 171
+            echo. line 172
             goto end
         )
     ) else (
@@ -187,7 +188,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 183
+            echo. line 184
             goto end
         )
     )           
@@ -214,13 +215,13 @@ cls
         ) else (
             rem Run 64bit downloader
             %badmin64% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
-        )           
+        )
     echo. 40%% Completed.
     echo.
 
 :time_pause4
     echo.
-    timeout /t 4 > nul
+    timeout /t 2 > nul
 
 :: Checking to see if this python file has been downloaded.
 :section_6
@@ -236,7 +237,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 231
+            echo. line 233
             echo.
             goto end
         )
@@ -249,7 +250,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 244
+            echo. line 246
             echo.
             goto end
         )
@@ -261,7 +262,7 @@ cls
 :section_7
     echo.
     rem nothing here to see
-    timeout /t 4 > nul
+    timeout /t 2 > nul
 
 :: Installing Python
 :section_8
@@ -273,12 +274,13 @@ cls
     echo. Go grab Koffee or something, installion will take sometime since we had configured it to compile quite a few items.
     if /i "%processor_architecture%"=="x86" (
         C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
-        timeout /t 5 > nul
+        timeout /t 3 > nul
     ) else (
         C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
-        timeout /t 5 > nul
+        timeout /t 3 > nul
     )
     echo. 60%% Completed.
+    echo.
 
 :time_pause4
     echo.
@@ -292,12 +294,16 @@ cls
     echo. Compiling and Installing Python Modules
     echo. =======================================
     echo.
-    set num=15
+    echo. Press ENTER in this section if and when it seem to be pausing too long.
+    echo.
+    set num=20
     for /L %%I IN (1, 1, %num%) do (
         echo. | set /p="%%I " 
-        timeout /t 3 > nul
+        timeout /t 1 > nul
     )
+    echo.
     echo. 65%% Completed.
+    echo.
 
 :: Check to see if Python was installed 
 :section_10
@@ -314,7 +320,7 @@ cls
             echo. Python has not been installed.
             echo.
             echo. Problem with installation. 
-            echo. line 306
+            echo. line 312
             goto end
         )
     ) else (
@@ -322,7 +328,7 @@ cls
         echo. Python has not been installed.
         echo.
         echo. Problem with installation. 
-        echo. line 305
+        echo. line 311
         echo.
         goto end
     )
@@ -394,6 +400,9 @@ cls
     echo. ============================
     echo. Execute runme.bat
     echo. ============================
+    REM Putting environment variable string unto runme.bat instead of Windows Env Registry, 
+    REM since we dont know *YET* how to force the string unto Windows Automatically. 
+    REM Run this Auto generated --runme.bat-- inside a DOS prompt before using Python 3.11.X
     echo set PATH=C:\Python%major%%minor%%patch%;%PATH% > C:\Users\%USERNAME%\runme.bat
 
     if exist C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe (
