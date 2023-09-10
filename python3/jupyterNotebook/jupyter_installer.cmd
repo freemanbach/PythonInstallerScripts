@@ -185,6 +185,36 @@ cls
     echo.
     timeout /t 2 > nul
 
+:: Check to see if MiniConda was installed 
+:section_5_1
+    echo.
+    if exist C:\Users\%USERNAME%\miniconda3\_conda.exe (
+        if exist C:\Users\%USERNAME%\miniconda3\condabin\activate.bat (
+            echo.
+            echo. Checking whether MiniConda has been installed...
+            echo.
+            echo. MiniConda Software has been Installed.
+            echo.
+        ) else (
+            echo.
+            echo. MiniConda has not been installed.
+            echo.
+            echo. Problem with installation. 
+            echo. line 192
+            goto end
+        )
+    ) else (
+        echo.
+        echo. MiniConda has not been installed.
+        echo.
+        echo. Problem with installation. 
+        echo. line 191
+        echo.
+        goto end
+    )
+    echo. 55%% Completed.
+    echo.
+
 :: spinning it for a minute
 :section_6
     setlocal
