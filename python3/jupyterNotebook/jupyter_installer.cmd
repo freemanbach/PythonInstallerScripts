@@ -264,6 +264,20 @@ cls
     echo.
     timeout /t 3 > nul
 
+:section_8_1
+    setlocal
+    echo.
+    echo. =======================================
+    echo. Creating a Jupyter Notebook Folder
+    echo. =======================================
+    echo.
+    mkdir C:\Users\%USERNAME%\jupyter_projects
+    timeout /t 1 > nul
+
+:time_pause2
+    echo.
+    timeout /t 2 > nul
+
 :section_9
     setlocal
     echo.
@@ -273,6 +287,9 @@ cls
     echo.
     echo. launching Jupyter Notebook
     echo.
-    jupyter notebook
+    cd C:\Users\%USERNAME%\jupyter_projects
+    REM call the native jupyter notebook via miniconda binary instead of my 
+    REM native python installation of jupyter-notebook.
+    C:\users\%USERNAME%\miniconda3\Scripts\jupyter-notebook.exe
     
 :end
