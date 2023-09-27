@@ -304,7 +304,7 @@ cls
 :section_10
     echo.
     if exist C:\Python%major%%minor%%patch%%release%\python.exe (
-        if exist C:\Python%major%%minor%%patch%%release%\Tools\demo\vector.py (
+        if exist C:\Python%major%%minor%%patch%%release%\Scripts\pip.exe (
             echo.
             echo. Checking whether Python has been installed...
             echo.
@@ -315,7 +315,7 @@ cls
             echo. Python has not been installed.
             echo.
             echo. Problem with installation. 
-            echo. line 306
+            echo. line 307
             goto end
         )
     ) else (
@@ -323,7 +323,7 @@ cls
         echo. Python has not been installed.
         echo.
         echo. Problem with installation. 
-        echo. line 305
+        echo. line 306
         echo.
         goto end
     )
