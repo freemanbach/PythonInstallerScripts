@@ -2,7 +2,7 @@
 # Email  : flo@radford.edu
 # DESC   : Silent Installer for MAC_OSX python installer
 #        : for version 3.12.0 RC3
-# Date   : 2023.09.26
+# Date   : 2023.09.28
 ################################
 
 ################################
