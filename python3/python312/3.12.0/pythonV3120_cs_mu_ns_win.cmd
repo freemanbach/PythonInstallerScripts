@@ -48,7 +48,7 @@ cls
 :: This batch file will show details Windows 10
 :section_0
     setlocal
-    title Install Python Software on Windows 7/8/9/10/11
+    title Install Python Software on Windows 10/11
     echo. Checking system information.
     timeout /t 2 > nul
     rem Switch to Downloads early on
@@ -405,7 +405,7 @@ cls
     REM Putting environment variable string unto runme.bat instead of Windows Env Registry, 
     REM since we dont know *YET* how to force the string unto Windows Automatically. 
     REM Run this Auto generated --runme.bat-- inside a DOS prompt before using Python 3.12.X
-    echo set PATH=C:\Python%major%%minor%%patch%;%PATH% > C:\Users\%USERNAME%\runme_test.bat
+    echo set PATH=C:\Python%major%%minor%%patch%;%PATH% > C:\Users\%USERNAME%\runme.bat
 
     if exist C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe (
         REM deleting 64 bit installer
@@ -418,7 +418,7 @@ cls
             del /s C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe >nul 2>&1
         )
     )
-    call C:\Users\%USERNAME%\runme_test.bat
+    call C:\Users\%USERNAME%\runme.bat
     echo.
 
 :: Run Python
