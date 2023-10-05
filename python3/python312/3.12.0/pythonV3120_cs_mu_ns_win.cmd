@@ -46,7 +46,7 @@ cls
     set /p _value=Are you sure installing Python-3.12.0 x86-64 or x86 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
-:: This batch file will show details Windows 10
+:: This batch file will show details Windows 10/11
 :section_0
     setlocal
     title Install Python Software on Windows 10/11
@@ -149,7 +149,7 @@ cls
     echo.
     echo. You may need to press ENTER, 
     echo. If the wait time is more than 20 seconds.
-    echo. if it crashed, Press CTRL-C or something.
+    echo. if it crashed, Press CTRL-C.
     echo. Continuing...................
     echo. .............................
     echo.
@@ -177,7 +177,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 172
+            echo. line 173
             goto end
         )
     ) else (
@@ -189,7 +189,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 184
+            echo. line 185
             goto end
         )
     )           
@@ -238,7 +238,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 232
+            echo. line 233
             echo.
             goto end
         )
@@ -251,7 +251,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 245
+            echo. line 246
             echo.
             goto end
         )
@@ -322,16 +322,14 @@ cls
             echo.
             echo. Python has not been installed.
             echo.
-            echo. Problem with installation. 
-            echo. line 314
+            echo. line 315
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. Problem with installation. 
-        echo. line 313
+        echo. line 314
         echo.
         goto end
     )
