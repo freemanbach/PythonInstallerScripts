@@ -178,7 +178,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 171
+            echo. line 174
             goto end
         )
     ) else (
@@ -190,7 +190,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 185
+            echo. line 186
             goto end
         )
     )           
