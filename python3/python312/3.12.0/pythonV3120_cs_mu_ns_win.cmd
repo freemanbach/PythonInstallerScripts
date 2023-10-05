@@ -1,12 +1,13 @@
 @echo OFF
-
-REM Auth          : Freeman
-REM Email         : flo@radford.edu
-REM DESC          : Silent Python Installer for Windows
-REM 32bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0.exe
-REM 64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe
-REM Date          : 2023.10.02
-
+REM -----------------------------------------------------------------------------------
+REM Auth             : Freeman
+REM Email            : flo@radford.edu
+REM DESC             : Silent Python Installer for Windows
+REM x8632bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0.exe
+REM AMD64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe
+REM ARM64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-arm64.exe
+REM Date             : 2023.10.02
+REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
 set patch=0
@@ -103,7 +104,7 @@ cls
         echo. Deleting existing version of Python
         echo.
     ) else (
-        echo. No existing version of python 3.10.0 Avail.
+        echo. No existing version of python 3.10.x Found.
         echo.
     )
     echo. 10%% Completed.
@@ -120,7 +121,7 @@ cls
         echo. Deleting existing version of Python
         echo.
     ) else (
-        echo. No existing version of python 3.9 Found.
+        echo. No existing version of python 3.9.x Found.
         echo.
     )
     echo. 15%% Completed.
@@ -170,7 +171,7 @@ cls
     if /i "%processor_architecture%"=="x86" (
         rem check 32bit FTP downloader
         if exist %badmin32% (
-            echo. Bitsadmin 32bit is installed on your Windows 7/8/9/10/11 system.
+            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
             goto section_5
@@ -182,7 +183,7 @@ cls
     ) else (
         rem check 64bit FTP downloader
         if exist %badmin64% (
-            echo. Bitsadmin 64bit is installed on your Windows 7/8/9/10/11 system.
+            echo. Bitsadmin 64bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
             goto section_5
