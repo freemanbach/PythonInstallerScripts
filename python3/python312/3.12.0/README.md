@@ -1,13 +1,13 @@
 # ARM processors
-This is a Final release of Python 3.12.0.
+This is a First release of Python 3.12.0.
 
-We have spend time on writing a shell script installer for ARM processors on Windows and
+We have spendt time on writing a shell script installer for ARM processors on Windows and
 M1/M2 Mac devices. We wont be able to test the ARM Installer for Windows due to lacking
 a ARM windows hardware to test. If you owned a Surface pro tablet, running the non-ARM 
 installer should work for you. If you are bold, you can certainly try the experimental 
 Python installer for Windows. 
 
-There is also a Disclaimer from the Python Community on their ARM Python Install for Windows.  
+There is also a Disclaimer from the Python Community on their ARM Python Install for Windows (Experimental).  
 
 The default shell PKG UNIVERSAL installer for MAC will work for both Intel Mac devices and ARM (M1/M2) devices.  
 
