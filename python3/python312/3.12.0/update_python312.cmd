@@ -1,12 +1,13 @@
 @echo OFF
-
-REM Auth          : Freeman
-REM Email         : flo@radford.edu
-REM DESC          : Silent Python Installer for Windows
-REM 32bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0.exe
-REM 64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe
-REM Date          : 2023.10.07
-
+REM -----------------------------------------------------------------------------------
+REM Auth             : Freeman
+REM Email            : flo@radford.edu
+REM DESC             : Silent Python Installer for Windows
+REM x8632bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0.exe
+REM AMD64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe
+REM ARM64bit path    : https://www.python.org/ftp/python/3.12.0/python-3.12.0-arm64.exe
+REM Date             : 2023.10.07
+REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
 set patch=0
