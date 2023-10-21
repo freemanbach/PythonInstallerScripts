@@ -31,8 +31,39 @@ goto check_permission
     echo.
     timeout /t 3 > nul
 
+:check_bitsadmin
+    REM forgot that 32bit Windows has a different location for bitsadmin
+    if /i "%processor_architecture%"=="x86" (
+        rem check 32bit FTP downloader
+        if exist %badmin32% (
+            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
+            echo.
+            goto clear_me
+        ) else (
+            echo. We dont know where bitsadmin 32bit is located.
+            echo. line 38
+            goto end
+        )
+    ) else (
+        rem check 64bit FTP downloader
+        if exist %badmin64% (
+            echo. Bitsadmin 64bit is installed on your Windows 10/11 system.
+            echo.
+            goto clear_me
+        ) else (
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 49
+            goto end
+        )
+    )           
+
+:time_pause2
+    echo.
+    timeout /t 3 > nul
+
 :: clear screen
-cls
+:clear_me
+    cls
 
 :: Prompt for user to Really run this script
 :start_this
@@ -55,6 +86,7 @@ cls
     cls
     echo.
     echo. Choose: 3.9.x or 3.10.x or 3.11.x
+    echo.
     set /p _version_=Which Python versions do you like to install (9/10/[11]) ?
     set /a _version_="%_version_%"*1
     echo.
@@ -80,7 +112,6 @@ cls
         echo. Not a Number, exiting....
         goto end
     )
-
     if "%_version_%"=="" goto end
     echo.
     echo.
