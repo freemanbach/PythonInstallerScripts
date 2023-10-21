@@ -98,12 +98,14 @@ cls
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         ) else (
             rem Run 64bit downloader
             %badmin64% /transfer PythonDownload /download /priority normal https://raw.githubusercontent.com/freemanbach/PythonInstallerScripts/main/python3/python39/3.9.12/pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         )
     echo.
 
@@ -120,12 +122,14 @@ cls
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         ) else (
             rem Run 64bit downloader
             %badmin64% /transfer PythonDownload /download /priority normal https://raw.githubusercontent.com/freemanbach/PythonInstallerScripts/main/python3/python310/3.10.11/pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         )
     echo.
 
@@ -141,12 +145,14 @@ cls
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         ) else (
             rem Run 64bit downloader
             %badmin64% /transfer PythonDownload /download /priority normal https://raw.githubusercontent.com/freemanbach/PythonInstallerScripts/main/python3/python311/3.11.6/pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
             echo.
             timeout /t 4 > nul
             call C:\Users\%USERNAME%\Downloads\pythonV%major%%minor%%patch%_cs_mu_ns_win.cmd
+            goto end
         )
     echo.
 :end
