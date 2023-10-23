@@ -12,7 +12,7 @@ cd $HOME/Downloads
 
 ################################
 # Download this file for MAC_OSX
-curl -C - -O https://www.python.org/ftp/python/3.11.5/python-3.11.6-macos11.pkg 
+curl -C - -O https://www.python.org/ftp/python/3.11.6/python-3.11.6-macos11.pkg 
 ################################
 
 ###############################
@@ -40,8 +40,8 @@ sudo installer -verboseR -pkg python-3.11.6-macos11.pkg -target /Applications
 #############################
 # Download custom .bashrc file from Repo
 cd $HOME
-curl -C - -O https://raw.githubusercontent.com/freemanbach/Python/master/python3/installscript/.profile
-curl -C - -O https://raw.githubusercontent.com/freemanbach/Python/master/python3/installscript/.bashrc
+#curl -C - -O https://raw.githubusercontent.com/freemanbach/Python/master/python3/installscript/.profile
+#curl -C - -O https://raw.githubusercontent.com/freemanbach/Python/master/python3/installscript/.bashrc
 ############################
 
 #############################
