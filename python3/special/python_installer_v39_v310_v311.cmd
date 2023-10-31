@@ -68,12 +68,10 @@ goto check_permission
 :: Prompt for user to Really run this script
 :start_this
     setlocal
-    echo.
-    echo.
     set param="n"
-    set /p param=Are you sure installing Python x86_64 or x86 (y/[n]) ?
-    if /i %param% NEQ "y" goto end
-
+    set /p param=Are you sure installing Python x86-64 or x86 (y/[n]) ?
+    if /i "%param%" NEQ "y" goto end
+    
 :time_pause2
     echo.
     timeout /t 3 > nul
