@@ -364,6 +364,7 @@ cls
 
 :: Installing Additional Modules
 :section_13
+    echo.
     echo. =============================
     echo. Installing Additional Modules
     echo. =============================
