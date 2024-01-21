@@ -12,7 +12,7 @@ cd $HOME/Downloads
 
 ################################
 # Download this file for MAC_OSX
-curl -C - -O https://www.python.org/ftp/python/3.11.7/python-3.11.7macos11.pkg 
+curl -C - -O https://www.python.org/ftp/python/3.11.7/python-3.11.7-macos11.pkg 
 ################################
 
 ###############################
