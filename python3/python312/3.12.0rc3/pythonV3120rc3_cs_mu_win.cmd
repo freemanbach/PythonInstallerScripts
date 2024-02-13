@@ -176,7 +176,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 171
+            echo. line 172
             goto end
         )
     ) else (
@@ -188,7 +188,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 183
+            echo. line 184
             goto end
         )
     )           
@@ -237,7 +237,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 231
+            echo. line 232
             echo.
             goto end
         )
@@ -250,7 +250,7 @@ cls
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 244
+            echo. line 245
             echo.
             goto end
         )
