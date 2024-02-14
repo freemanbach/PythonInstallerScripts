@@ -1,5 +1,4 @@
 # ARM processors
-This is a First release of Python 3.12.0.
 
 We have spendt time on writing a shell script installer for ARM processors on Windows and
 M1/M2 Mac devices. We wont be able to test the ARM Installer for Windows due to lacking
