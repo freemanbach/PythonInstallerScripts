@@ -47,7 +47,7 @@ cd $HOME
 #############################
 # install Finance Packages
 #############################
-#/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user wheel scrapy
+/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user wheel scrapy
 #/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user pandas_datareader requests ta scipy numpy plotly
 #/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user pandas matplotlib
 #/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user wikipedia wordcloud
