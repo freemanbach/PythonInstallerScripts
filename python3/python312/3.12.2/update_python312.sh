@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # -----------------------------------------------------------------------------------
 # Auth   : Freeman
 # Email  : flo@radford.edu
@@ -9,13 +9,13 @@
 
 # update Python 3.12 on mac
 echo "Updating Python 3.12.x for Mac..."
-echo.
+echo "\n"
 
 # send user back to $HOME first
 cd
 
 echo "Required Administrator Password for the following updates. "
-echo.
+echo "\n"
 DATA=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
 if [[ -f "$DATA" ]]; then
     echo "Starting to update to new version of pip.\n "
@@ -23,6 +23,7 @@ if [[ -f "$DATA" ]]; then
     # write out the python packages to a file then upgrade them individually
     sudo /Library/Frameworks/Python.framework/Versions/3.12/bin/pip3 freeze > req.txt
     sudo /Library/Frameworks/Python.framework/Versions/3.12/bin/pip3 install -r req.txt --upgrade
+    echo "\n"
     # Delete req.txt file
     echo "deleting the req file. \n"
     sudo rm -f req.txt
@@ -30,5 +31,5 @@ else
     echo "python3 file was not found in the data location.\n"
     exit 1
 fi
-
-echo "Finished Updating python Tools. \n"
+echo "\n"
+echo "Finished Updating python Tools. \n\n\n"

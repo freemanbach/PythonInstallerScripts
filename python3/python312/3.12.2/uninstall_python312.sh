@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # -----------------------------------------------------------------------------------
 # Auth   : Freeman
 # Email  : flo@radford.edu
@@ -13,11 +13,12 @@ echo "BECAREFUL: yet, it will leave some files undeleted."
 echo "\n"
 # -----------------------------------------------------------------------------------
 # Uninstall Python 3.12 for Mac
-echo "Uninstalling Python 3.12.x for Mac..."
+echo "Uninstalling Python 3.12.x for Mac...\n"
 cd
 rm -fr ./Library/Python/3.12
-echo "Required Administrator Password for the following. "
+echo "Required Administrator Password for the following. \n"
 sudo rm -fr /Library/Frameworks/Python.framework/Versions/3.12
 sudo rm -fr /Applications/Python\ 3.12
 # -----------------------------------------------------------------------------------
-echo "Finished Uninstallation Python 3.12.x"
+echo "\n"
+echo "Finished Uninstallation Python 3.12.x\n\n"
