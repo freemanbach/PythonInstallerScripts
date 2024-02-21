@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 ################################################################
 # Auth   : Freeman
 # Email  : flo@radford.edu
@@ -16,8 +16,8 @@ echo "\n"
 echo "Uninstalling Python 3.12.x for Mac..."
 cd
 rm -fr ./Library/Python/3.12
-echo "Required Administrator Password for the following. "
+echo "Required Administrator Password for the following. \n"
 sudo rm -fr /Library/Frameworks/Python.framework/Versions/3.12
 sudo rm -fr /Applications/Python\ 3.12
 ################################################################
-echo "Finished Uninstallation Python 3.12.x"
+echo "Finished Uninstallation Python 3.12.x\n\n"
