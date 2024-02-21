@@ -31,4 +31,4 @@ else
     exit 1
 fi
 
-echo "Finished Updating python Tools. \n"
+echo "Finished Updating python Tools. \n\n"
