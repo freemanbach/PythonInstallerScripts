@@ -372,7 +372,8 @@ cls
     echo. Press ENTER in this section if and when it seem to be pausing too long.
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user wheel scrapy
-    ::timeout /t 2 > nul
+    timeout /t 2 > nul
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx
     ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas_datareader requests ta scipy numpy plotly
     ::timeout /t 2 > nul
     ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas matplotlib

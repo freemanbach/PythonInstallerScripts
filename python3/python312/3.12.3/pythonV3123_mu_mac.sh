@@ -54,6 +54,7 @@ cd $HOME
 # install Packages
 #############################
 /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user wheel scrapy
+/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user pipx
 #/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user pandas_datareader requests ta scipy numpy plotly
 #/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user pandas matplotlib
 #/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user wikipedia wordcloud
