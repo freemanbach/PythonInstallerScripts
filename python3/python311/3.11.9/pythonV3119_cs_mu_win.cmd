@@ -365,11 +365,12 @@ cls
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user wheel scrapy
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas_datareader requests ta scipy numpy plotly
-    timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas matplotlib
-    timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user BeautifulSoup4 wikipedia wordcloud
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx
+    :: C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas_datareader requests ta scipy numpy plotly
+    :: timeout /t 2 > nul
+    :: C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas matplotlib
+    :: timeout /t 2 > nul
+    :: C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user BeautifulSoup4 wikipedia wordcloud
     timeout /t 2 > nul
     echo. 85%% Completed.
     echo.
