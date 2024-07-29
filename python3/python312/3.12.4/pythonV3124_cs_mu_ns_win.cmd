@@ -5,7 +5,6 @@ REM Email            : flo@radford.edu
 REM DESC             : Silent Python Installer for Windows
 REM x8632bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4.exe
 REM AMD64bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe
-REM ARM64bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4-arm64.exe
 REM Date             : 2024.06.10
 REM -----------------------------------------------------------------------------------
 set major=3
