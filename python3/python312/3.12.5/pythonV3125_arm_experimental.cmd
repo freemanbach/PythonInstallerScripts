@@ -12,11 +12,21 @@ set major=3
 set minor=12
 set patch=5
 
-set badmin32=C:\Windows\System32\bitsadmin.exe
-set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+::set badmin32=C:\Windows\System32\bitsadmin.exe
+::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+
+:: checking and saving the location of Bits-admin
+:: made detecting bitsadmin at run-time
+for /f %%i in ('where bitsadmin') do (
+    set badmin=%%i
+)
+if /i %badmin%=="" (
+    echo. There is no bitsadmin.
+    echo.
+    goto end
+)
 
 :: Check Admin DOS PROMPT is available
-goto check_permission
 :check_permission
     setlocal
     echo. Administrative permissions required. Detecting permissions..
@@ -171,7 +181,7 @@ cls
     REM forgot that 32bit Windows has a different location for bitsadmin
     if /i "%processor_architecture%"=="x86" (
         rem check location of BitsAdmin
-        if exist %badmin32% (
+        if exist %badmin% (
             echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -183,7 +193,7 @@ cls
         )
     ) else (
         rem check location of BitsAdmin
-        if exist %badmin64% (
+        if exist %badmin% (
             echo. Bitsadmin 64bit for ARM and AMD is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -215,15 +225,15 @@ cls
     echo.
     if /i "%processor_architecture%"=="x86" (
             rem Run 32bit downloader
-            %badmin32% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
         ) 
     if /i "%processor_architecture%"=="amd64" (
             rem Run 32bit downloader
-            %badmin64% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
         )
     if /i "%processor_architecture%"=="arm64" (
             rem Run 32bit downloader
-            %badmin64% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe
         )
     echo. 40%% Completed.
     echo.

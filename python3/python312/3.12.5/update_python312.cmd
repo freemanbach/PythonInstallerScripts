@@ -12,11 +12,21 @@ set major=3
 set minor=12
 set patch=5
 
-set badmin32=C:\Windows\System32\bitsadmin.exe
-set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+::set badmin32=C:\Windows\System32\bitsadmin.exe
+::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+
+:: checking and saving the location of Bits-admin
+:: made detecting bitsadmin at run-time
+for /f %%i in ('where bitsadmin') do (
+    set badmin=%%i
+)
+if /i %badmin%=="" (
+    echo. There is no bitsadmin.
+    echo.
+    goto end
+)
 
 :: Check Admin DOS PROMPT is available
-goto check_permission
 :check_permission
     setlocal
     echo. Administrative permissions required. Detecting permissions..
