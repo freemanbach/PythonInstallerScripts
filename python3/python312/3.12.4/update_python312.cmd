@@ -6,17 +6,27 @@ REM DESC             : Silent Python Installer for Windows
 REM x8632bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4.exe
 REM AMD64bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe
 REM ARM64bit path    : https://www.python.org/ftp/python/3.12.4/python-3.12.4-arm64.exe
-REM Date             : 2024.06.10
+REM Date             : 2024.08.21
 REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
 set patch=4
 
-set badmin32=C:\Windows\System32\bitsadmin.exe
-set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+::set badmin32=C:\Windows\System32\bitsadmin.exe
+::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+
+:: checking and saving the location of Bits-admin
+:: made detecting bitsadmin at run-time
+for /f %%i in ('where bitsadmin') do (
+    set badmin=%%i
+)
+if /i %badmin%=="" (
+    echo. There is no bitsadmin.
+    echo.
+    goto end
+)
 
 :: Check Admin DOS PROMPT is available
-goto check_permission
 :check_permission
     setlocal
     echo. Administrative permissions required. Detecting permissions..

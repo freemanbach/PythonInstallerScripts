@@ -179,7 +179,7 @@ cls
     REM forgot that 32bit Windows has a different location for bitsadmin
     if /i "%processor_architecture%"=="x86" (
         rem check 32bit FTP downloader
-        if exist %badmin32% (
+        if exist %badmin% (
             echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -191,7 +191,7 @@ cls
         )
     ) else (
         rem check 64bit FTP downloader
-        if exist %badmin64% (
+        if exist %badmin% (
             echo. Bitsadmin 64bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
@@ -221,10 +221,10 @@ cls
     echo.
     if /i "%processor_architecture%"=="x86" (
             rem Run 32bit downloader
-            %badmin32% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
         ) else (
             rem Run 64bit downloader
-            %badmin64% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
         )
     echo. 40%% Completed.
     echo.
