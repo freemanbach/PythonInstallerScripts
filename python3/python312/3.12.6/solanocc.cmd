@@ -6,7 +6,7 @@ REM DESC             : Silent Python Installer for Windows
 REM x8632bit path    : https://www.python.org/ftp/python/3.12.6/python-3.12.6.exe
 REM AMD64bit path    : https://www.python.org/ftp/python/3.12.6/python-3.12.6-amd64.exe
 REM ARM64bit path    : https://www.python.org/ftp/python/3.12.6/python-3.12.6-arm64.exe
-REM Date             : 2024.09.09
+REM Date             : 2024.09.20
 REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
@@ -59,7 +59,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.12.5 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-3.12.6 x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
