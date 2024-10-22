@@ -6,7 +6,7 @@ REM DESC             : Silent Python Installer for Windows
 REM x8632bit path    : https://www.python.org/ftp/python/3.12.7/python-3.12.7.exe
 REM AMD64bit path    : https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe
 REM ARM64bit path    : https://www.python.org/ftp/python/3.12.7/python-3.12.7-arm64.exe
-REM Date             : 2024.10.03
+REM Date             : 2024.10.21
 REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
@@ -14,9 +14,6 @@ set patch=7
 
 ::set badmin32=C:\Windows\System32\bitsadmin.exe
 ::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
-
-:: this wont work either since its not string that is returning
-::for /f "tokens=3 usebackq" %%a in (`reg query "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /v PROCESSOR_ARCHITECTURE`) do ( set archtype=%%a )
 
 :: checking and saving the location of Bits-admin
 :: made detecting bitsadmin at run-time
@@ -69,7 +66,7 @@ cls
     echo. Checking system information.
     timeout /t 2 > nul
     rem Switch to Downloads early on
-    cd C:\Users\%USERNAME%\Downloads
+    cd %~dp0
     echo. 3%% Completed.
 
 :time_pause2
@@ -192,7 +189,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 174
+            echo. line 185
             goto end
         )
     ) else (
@@ -204,7 +201,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 186
+            echo. line 197
             goto end
         )
     )           
@@ -229,15 +226,15 @@ cls
     echo.
     if /i "%processor_architecture%"=="x86" (
             rem Run 32bit downloader
-            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe %~dp0python-%major%.%minor%.%patch%.exe
         ) 
     if /i "%processor_architecture%"=="amd64" (
             rem Run 32bit downloader
-            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe %~dp0python-%major%.%minor%.%patch%-amd64.exe
         )
     if /i "%processor_architecture%"=="arm64" (
             rem Run 32bit downloader
-            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe %~dp0python-%major%.%minor%.%patch%-arm64.exe
         )
     echo. 40%% Completed.
     echo.
@@ -259,7 +256,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 241
+            echo. line 252
             echo.
             goto end
         )
@@ -272,7 +269,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 254
+            echo. line 265
             echo.
             goto end
         )
@@ -285,7 +282,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 267
+            echo. line 278
             echo.
             goto end
         )
@@ -309,15 +306,15 @@ cls
     echo. Go grab Koffee or something, installion will take sometime since we had configured it to compile quite a few items.
     echo.
     if /i "%processor_architecture%"=="x86" (
-        C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
+        %~dp0python-%major%.%minor%.%patch%.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
         timeout /t 2 > nul
     )
     if /i "%processor_architecture%"=="amd64" (
-        C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
+        %~dp0python-%major%.%minor%.%patch%-amd64.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
         timeout /t 2 > nul
     )
     if /i "%processor_architecture%"=="arm64" (
-        C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
+        %~dp0python-%major%.%minor%.%patch%-arm64.exe /quiet /passive InstallAllUsers=0 TargetDir=C:\Python%major%%minor%%patch% AssociateFiles=1 CompileAll=1 PrependPath=0 Shortcuts=0 Include_doc=1 Include_debug=0 Include_dev=1 Include_exe=1 Include_launcher=1 InstallLauncherAllUsers=1 Include_lib=1 Include_pip=1 Include_symbol=0 Include_tcltk=1 Include_test=1 Include_tools=1
         timeout /t 2 > nul
     )
     echo. 60%% Completed.
@@ -362,14 +359,14 @@ cls
             echo.
             echo. Python has not been installed.
             echo.
-            echo. line 341
+            echo. line 352
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. line 340
+        echo. line 351
         echo.
         goto end
     )
@@ -445,26 +442,26 @@ cls
     REM Putting environment variable string unto runme.bat instead of Windows Env Registry, 
     REM since we dont know *YET* how to force the string unto Windows Automatically. 
     REM Run this Auto generated --runme.bat-- inside a DOS prompt before using Python 3.12.X
-    echo set PATH=C:\Python%major%%minor%%patch%;%PATH% > C:\Users\%USERNAME%\runme.bat
+    echo set PATH=C:\Python%major%%minor%%patch%;%PATH% > ..\runme.bat
 
-    if exist C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe (
+    if exist %~dp0python-%major%.%minor%.%patch%-amd64.exe (
         REM deleting 64 bit installer
         echo. deleting installation file
-        del /s C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-amd64.exe >nul 2>&1
+        del /s %~dp0python-%major%.%minor%.%patch%-amd64.exe >nul 2>&1
     )
 
-    if exist C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe (
+    if exist %~dp0python-%major%.%minor%.%patch%-arm64.exe (
         REM deleting 64 bit installer
         echo. deleting installation file
-        del /s C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%-arm64.exe >nul 2>&1
+        del /s %~dp0python-%major%.%minor%.%patch%-arm64.exe >nul 2>&1
     )
 
-    if exist C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe (
+    if exist %~dp0python-%major%.%minor%.%patch%.exe (
             REM deleting 32 bit installer
             echo. deleting installation file
-            del /s C:\Users\%USERNAME%\Downloads\python-%major%.%minor%.%patch%.exe >nul 2>&1
+            del /s %~dp0python-%major%.%minor%.%patch%.exe >nul 2>&1
         )
-    call C:\Users\%USERNAME%\runme.bat
+    call ..\runme.bat
     echo.
 
 :: Create Directories
@@ -474,9 +471,9 @@ cls
     echo. Creating Directories
     echo.============================
     echo.
-    mkdir C:\Users\%USERNAME%\cis001
-    mkdir C:\Users\%USERNAME%\cis001\hws
-    mkdir C:\Users\%USERNAME%\cis001\labs
+    mkdir ..\cis001
+    mkdir ..\cis001\hws
+    mkdir ..\cis001\labs
     echo. Directories were Created
     echo.
 
