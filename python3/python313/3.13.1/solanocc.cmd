@@ -6,11 +6,11 @@ REM DESC             : Silent Python Installer for Windows
 REM x8632bit path    : https://www.python.org/ftp/python/3.13.1/python-3.13.1.exe
 REM AMD64bit path    : https://www.python.org/ftp/python/3.13.1/python-3.13.1-amd64.exe
 REM ARM64bit path    : https://www.python.org/ftp/python/3.13.1/python-3.13.1-arm64.exe
-REM Date             : 2024.12.05
+REM Date             : 2024.12.07
 REM -----------------------------------------------------------------------------------
 set major=3
 set minor=13
-set patch=5
+set patch=1
 
 ::set badmin32=C:\Windows\System32\bitsadmin.exe
 ::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
@@ -59,7 +59,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.13.0 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-3.13.1 x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
@@ -412,12 +412,7 @@ cls
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user wheel scrapy
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx
-    ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas_datareader requests ta scipy numpy plotly
-    ::timeout /t 2 > nul
-    ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas matplotlib
-    ::timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user BeautifulSoup4
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx bs4
     timeout /t 2 > nul
     echo. 85%% Completed.
     echo.
