@@ -12,9 +12,6 @@ set major=3
 set minor=13
 set patch=1
 
-::set badmin32=C:\Windows\System32\bitsadmin.exe
-::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
-
 :: this wont work either since its not string that is returning
 ::for /f "tokens=3 usebackq" %%a in (`reg query "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /v PROCESSOR_ARCHITECTURE`) do ( set archtype=%%a )
 
@@ -232,11 +229,11 @@ cls
             %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe %~dp0python-%major%.%minor%.%patch%.exe
         ) 
     if /i "%processor_architecture%"=="amd64" (
-            rem Run 32bit downloader
+            rem Run 64bit downloader
             %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe %~dp0python-%major%.%minor%.%patch%-amd64.exe
         )
     if /i "%processor_architecture%"=="arm64" (
-            rem Run 32bit downloader
+            rem Run 64bit downloader
             %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe %~dp0python-%major%.%minor%.%patch%-arm64.exe
         )
     echo. 40%% Completed.
@@ -480,6 +477,9 @@ cls
     echo.
     echo.
     python -c "print(\"Welcome, Python installation Success.\")"
+    echo.
+    echo. Run the runme.bat in your home directory file each time 
+    echo. you want to execute Python on the Command Prompt.
     python -V
     echo.
     echo.
