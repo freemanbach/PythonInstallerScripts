@@ -417,16 +417,17 @@ cls
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pymc3 pingouin
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user prophet darts
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user prophet
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user scikit-learn xgboost
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user scikit-learn
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user spacy nltk fastapi
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user nltk fastapi
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user ray luigi perfect
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user luigi perfect
     :: skipping lightgbm tensorflow pytourch theano
     timeout /t 2 > nul
-    
+    :: issues with these spacy, ray, numpy, darts and catboost
+
     echo.
     echo. 85%% Completed.
     echo.
@@ -481,6 +482,9 @@ cls
     echo.
     echo.
     python -c "print(\"Welcome, Python installation Success.\")"
+    echo.
+    echo. Run the runme.bat in your home directory file each time 
+    echo. you want to execute Python on the Command Prompt.   
     python -V
     echo.
     echo.
