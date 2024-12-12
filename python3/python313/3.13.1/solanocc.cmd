@@ -189,7 +189,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 32bit is located.
-            echo. line 188
+            echo. line 185
             goto end
         )
     ) else (
@@ -201,7 +201,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 200
+            echo. line 197
             goto end
         )
     )           
@@ -256,7 +256,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 255
+            echo. line 252
             echo.
             goto end
         )
@@ -269,7 +269,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 268
+            echo. line 265
             echo.
             goto end
         )
@@ -282,7 +282,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 281
+            echo. line 278
             echo.
             goto end
         )
@@ -359,14 +359,14 @@ cls
             echo.
             echo. Python has not been installed.
             echo.
-            echo. line 355
+            echo. line 352
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. line 354
+        echo. line 351
         echo.
         goto end
     )
