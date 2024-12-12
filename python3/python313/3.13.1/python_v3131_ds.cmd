@@ -409,7 +409,7 @@ cls
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user requests
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user ta scipy numpy
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user ta scipy
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas polars matplotlib
     timeout /t 2 > nul
