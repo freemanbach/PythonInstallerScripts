@@ -34,12 +34,26 @@ except ImportError as e:
 
 def main():
     home_dir = os.path.expanduser('~')
+
+    if os.path.exists(home_dir + "\\" + "ruby"):
+        print("Found Ruby installation .....")
+        print("removing existing Ruby installation in user home directory.")
+        shutil.rmtree(home_dir + "\\" + "ruby")
+
+    print("##############################################################")
+    print("                                                              ")    
+    print("Will Install the latest version of Ruby Programming Lanaguage ")
+    print("                                                              ")    
+    print("##############################################################")        
+    
     ruby_archive = []
     website = "https://rubyinstaller.org/downloads/index.html"
     ws = requests.get(website)
 
     if ws.status_code != 200:
+        print("######################################")
         print("Ruby Windows Website is not available.")
+        print("######################################")
         sys.exit()
 
     soup = BeautifulSoup( ws.content , 'html.parser') 
