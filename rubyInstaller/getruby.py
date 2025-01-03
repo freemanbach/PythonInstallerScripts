@@ -36,24 +36,26 @@ def main():
     home_dir = os.path.expanduser('~')
 
     if os.path.exists(home_dir + "\\" + "ruby"):
-        print("Found Ruby installation .....")
-        print("removing existing Ruby installation in user home directory.")
+        print("\n\nFound Ruby installation .....")
+        print("\n  Removing existing Ruby installation in user home directory.")
         shutil.rmtree(home_dir + "\\" + "ruby")
 
+    print("\n")
     print("##############################################################")
-    print("                                                              ")    
     print("Will Install the latest version of Ruby Programming Lanaguage ")
-    print("                                                              ")    
-    print("##############################################################")        
+    print("##############################################################")   
+    print("\n")     
     
     ruby_archive = []
     website = "https://rubyinstaller.org/downloads/index.html"
     ws = requests.get(website)
 
     if ws.status_code != 200:
+        print("\n")
         print("######################################")
         print("Ruby Windows Website is not available.")
         print("######################################")
+        print("\n")
         sys.exit()
 
     soup = BeautifulSoup( ws.content , 'html.parser') 
@@ -63,7 +65,7 @@ def main():
             ruby_archive.append(abc)
 
     ruby_url = ruby_archive[0]
-    ruby_file = ruby_archive[0].split('/')[-1]
+    ruby_file = ruby_url.split('/')[-1]
     ruby_folder = ruby_file.rsplit('.',1)[0]
     resp = requests.get(ruby_url, stream=True)
     file_location = home_dir + "\\" + ruby_file
@@ -71,6 +73,12 @@ def main():
     # Sizes in bytes.
     total_size = int(resp.headers.get("content-length", 0))
     block_size = 1024
+
+    print("\n")
+    print("######################################")
+    print("Parsing html file                     ")
+    print("######################################")
+    print("\n")
 
     # download bar and write to FS
     if resp.status_code == 200:
@@ -84,6 +92,11 @@ def main():
         print(f"\n\nFailed to download file. Status code: {resp.status_code}")
         sys.exit(0)
         
+    print("\n")
+    print("######################################")
+    print("Extracting file                       ")
+    print("######################################")
+    print("\n")
     # decompress file
     archive = py7zr.SevenZipFile(file_location, mode='r')
     archive.extractall(path=home_dir)
@@ -104,11 +117,22 @@ def main():
         print(f"some kind of error occurred: {e}")
         sys.exit(0)
 
+    print("\n")
+    print("######################################")
+    print("copying file                          ")
+    print("######################################")
+    print("\n")
     # copying files over
     src = home_dir + "\\" + ruby_folder
     dst = ruby_home
     shutil.copytree(src,dst , dirs_exist_ok=True)
 
+
+    print("\n")
+    print("######################################")
+    print("Removing Source files                 ")
+    print("######################################")
+    print("\n")
     # removing the extracted folder after decompression
     shutil.rmtree(src)
 
