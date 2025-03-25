@@ -1,7 +1,7 @@
 ##############################################################################################################
 # Author   : Freeman
 # email    : flo@radford.edu
-# Date     : 2024.12.27
+# Date     : 2025.03.25
 # desc     : Pull the 7z archive ruby package to your Pc and extract it to your home location
 # comments : You can certainly alter this code to get the devkit executable binary version with an installer.
 # binary   : https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.6-2/rubyinstaller-devkit-3.3.6-2-x64.exe
@@ -64,7 +64,8 @@ def main():
         if abc.endswith(".7z"):
             ruby_archive.append(abc)
 
-    ruby_url = ruby_archive[0]
+    # ruby added arm for windows so its the next one
+    ruby_url = ruby_archive[1]
     ruby_file = ruby_url.split('/')[-1]
     ruby_folder = ruby_file.rsplit('.',1)[0]
     resp = requests.get(ruby_url, stream=True)
