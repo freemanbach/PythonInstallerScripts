@@ -6,7 +6,8 @@
 # comments : You can certainly alter this code to get the devkit executable binary version with an installer.
 # binary   : https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.6-2/rubyinstaller-devkit-3.3.6-2-x64.exe
 ##############################################################################################################
-import sys, os, re, shutil
+import sys, os, re
+import shutil, hashlib
 
 try:
     import py7zr
@@ -32,18 +33,33 @@ except ImportError as e:
     print("Need to install requests !")
     sys.exit(0)
 
+def getSHA256(fp):
+    sha256_hash = hashlib.sha1()
+    try:
+        with open(fp, 'rb') as file:
+            while True:
+                chunk = file.read(4096)
+                if not chunk:
+                    break
+                sha256_hash.update(chunk)
+        return sha256_hash.hexdigest()
+    except FileNotFoundError:
+        return "File not found."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
 def main():
     home_dir = os.path.expanduser('~')
 
     if os.path.exists(home_dir + "\\" + "ruby"):
-        print("\n\nFound Ruby installation .....")
+        print("\n  Found Ruby installation .....")
         print("\n  Removing existing Ruby installation in user home directory.")
         shutil.rmtree(home_dir + "\\" + "ruby")
 
     print("\n")
-    print("##############################################################")
-    print("Will Install the latest version of Ruby Programming Lanaguage ")
-    print("##############################################################")   
+    print("##########################################################")
+    print("Install the latest version of Ruby Programming Lanaguage  ")
+    print("##########################################################")   
     print("\n")     
     
     ruby_archive = []
@@ -76,9 +92,9 @@ def main():
     block_size = 1024
 
     print("\n")
-    print("######################################")
-    print("Parsing html file                     ")
-    print("######################################")
+    print("#######################")
+    print("Parsing html file      ")
+    print("#######################")
     print("\n")
 
     # download bar and write to FS
@@ -93,10 +109,17 @@ def main():
         print(f"\n\nFailed to download file. Status code: {resp.status_code}")
         sys.exit(0)
         
+    print("#######################")
+    print("SHA 256                ")
+    print("#######################")
+    hash_value = getSHA256(file_location)
+    print(f"SHA 256 sum: {hash_value}")
+
+
     print("\n")
-    print("######################################")
-    print("Extracting file                       ")
-    print("######################################")
+    print("#######################")
+    print("Extracting file        ")
+    print("#######################")
     print("\n")
     # decompress file
     archive = py7zr.SevenZipFile(file_location, mode='r')
@@ -119,9 +142,9 @@ def main():
         sys.exit(0)
 
     print("\n")
-    print("######################################")
-    print("copying file                          ")
-    print("######################################")
+    print("#######################")
+    print("copying file           ")
+    print("#######################")
     print("\n")
     # copying files over
     src = home_dir + "\\" + ruby_folder
@@ -130,9 +153,9 @@ def main():
 
 
     print("\n")
-    print("######################################")
-    print("Removing Source files                 ")
-    print("######################################")
+    print("#######################")
+    print("Removing Source files  ")
+    print("#######################")
     print("\n")
     # removing the extracted folder after decompression
     shutil.rmtree(src)
