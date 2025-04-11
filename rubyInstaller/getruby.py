@@ -35,16 +35,16 @@ except ImportError as e:
     print("Need to install requests !")
     sys.exit(0)
 
-def getSHA256(fp):
-    sha256_hash = hashlib.sha1()
+def getSha3_256(fp):
+    sha3_256 = hashlib.sha3_256()
     try:
         with open(fp, 'rb') as file:
             while True:
                 chunk = file.read(4096)
                 if not chunk:
                     break
-                sha256_hash.update(chunk)
-        return sha256_hash.hexdigest()
+                sha3_256.update(chunk)
+        return sha3_256.hexdigest()
     except FileNotFoundError:
         return "File not found."
     except Exception as e:
@@ -120,8 +120,8 @@ def checksum(flocation):
     print("SHA 256                ")
     print("#######################")
     print()
-    hash_value = getSHA256(flocation)
-    print(f"SHA256 Sum: {hash_value}")
+    hash_value = getSha3_256(flocation)
+    print(f"SHA3_256 Sum: {hash_value}")
 
 def extractFile(flocation):
     print("\n")
