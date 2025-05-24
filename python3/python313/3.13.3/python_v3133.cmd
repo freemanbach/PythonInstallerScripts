@@ -53,7 +53,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.13.2 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-3.13.3 x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
@@ -177,10 +177,10 @@ cls
     echo.
 
     REM forgot that 32bit Windows has a different location for bitsadmin
-    if /i "%processor_architecture%"=="x86" (
+    if /i "%processor_architecture%"=="arm64" (
         rem check location of BitsAdmin
         if exist %badmin% (
-            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
+            echo. Bitsadmin 64bit is installed on your Windows 10/11 system.
             echo. Will download Python 3 software.
             echo.
             goto section_5
@@ -189,7 +189,9 @@ cls
             echo. line 182
             goto end
         )
-    ) else (
+    ) 
+    
+    if /i "%processor_architecture%"=="amd64" (
         rem check location of BitsAdmin
         if exist %badmin% (
             echo. Bitsadmin 64bit for ARM and AMD is installed on your Windows 10/11 system.
@@ -198,12 +200,24 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 194
+            echo. line 196
             goto end
         )
     )           
-    
-    echo. 
+
+    if /i "%processor_architecture%"=="x86" (
+        rem check location of BitsAdmin
+        if exist %badmin% (
+            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
+            echo. Will download Python 3 software.
+            echo.
+            goto section_5
+        ) else (
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 210
+            goto end
+        )
+    )          
     echo. 30%% Completed.
 
 :time_pause2
@@ -253,7 +267,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 249
+            echo. line 263
             echo.
             goto end
         )
@@ -266,7 +280,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 262
+            echo. line 276
             echo.
             goto end
         )
@@ -279,7 +293,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 275
+            echo. line 289
             echo.
             goto end
         )
@@ -356,14 +370,14 @@ cls
             echo.
             echo. Python has not been installed.
             echo.
-            echo. line 349
+            echo. line 363
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. line 348
+        echo. line 362
         echo.
         goto end
     )
