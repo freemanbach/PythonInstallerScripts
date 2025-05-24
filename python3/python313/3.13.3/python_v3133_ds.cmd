@@ -189,7 +189,9 @@ cls
             echo. line 182
             goto end
         )
-    ) else (
+    ) 
+    
+    if /i "%processor_architecture%"=="amd64" (
         rem check location of BitsAdmin
         if exist %badmin% (
             echo. Bitsadmin 64bit for ARM and AMD is installed on your Windows 10/11 system.
@@ -197,13 +199,25 @@ cls
             echo.
             goto section_5
         ) else (
-            echo. We dont know where bitsadmin 32bit is located.
-            echo. line 194
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 196
             goto end
         )
     )           
-    
-    echo. 
+
+    if /i "%processor_architecture%"=="x86" (
+        rem check location of BitsAdmin
+        if exist %badmin% (
+            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
+            echo. Will download Python 3 software.
+            echo.
+            goto section_5
+        ) else (
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 208
+            goto end
+        )
+    )          
     echo. 30%% Completed.
 
 :time_pause2
