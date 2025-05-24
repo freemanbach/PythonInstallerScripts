@@ -3,13 +3,13 @@ REM ----------------------------------------------------------------------------
 REM Auth             : Freeman
 REM Email            : flo@radford.edu
 REM DESC             : Silent Python Installer for Windows
-REM x8632bit path    : https://www.python.org/ftp/python/3.12.8/python-3.12.8.exe
-REM AMD64bit path    : https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe
-REM Date             : 2024.12.04
+REM x8632bit path    : https://www.python.org/ftp/python/3.12.9/python-3.12.9.exe
+REM AMD64bit path    : https://www.python.org/ftp/python/3.12.9/python-3.12.9-amd64.exe
+REM Date             : 20241204
 REM -----------------------------------------------------------------------------------
 set major=3
 set minor=12
-set patch=8
+set patch=9
 
 ::set badmin32=C:\Windows\System32\bitsadmin.exe
 ::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
@@ -53,7 +53,7 @@ cls
 :start_this
     setlocal
     set _value="n"
-    set /p _value=Are you sure installing Python-3.12.8 x86-64 or x86 (y/[n]) ?
+    set /p _value=Are you sure installing Python-3.12.9 x86-64 or x86 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10/11
@@ -384,11 +384,6 @@ cls
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user wheel scrapy
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx
-    ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas_datareader requests ta scipy numpy plotly
-    ::timeout /t 2 > nul
-    ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pandas matplotlib
-    ::timeout /t 2 > nul
-    ::C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user BeautifulSoup4 wikipedia wordcloud
     timeout /t 2 > nul
     echo. 85%% Completed.
     echo.
