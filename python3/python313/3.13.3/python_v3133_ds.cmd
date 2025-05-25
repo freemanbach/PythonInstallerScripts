@@ -53,7 +53,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.13.2 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-%major%.%minor%.%patch% x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
@@ -185,7 +185,7 @@ cls
             echo.
             goto section_5
         ) else (
-            echo. We dont know where bitsadmin 32bit is located.
+            echo. We dont know where bitsadmin 64bit is located.
             echo. line 182
             goto end
         )
@@ -214,7 +214,7 @@ cls
             goto section_5
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 208
+            echo. line 210
             goto end
         )
     )          
@@ -267,7 +267,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 249
+            echo. line 263
             echo.
             goto end
         )
@@ -280,7 +280,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 262
+            echo. line 276
             echo.
             goto end
         )
@@ -293,7 +293,7 @@ cls
             goto section_7
         ) else (
             echo. Software not found.
-            echo. line 275
+            echo. line 289
             echo.
             goto end
         )
@@ -368,13 +368,13 @@ cls
         ) else (
             echo.
             echo. Python has not been installed.
-            echo. line 349
+            echo. line 363
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
-        echo. line 348
+        echo. line 362
         goto end
     )
     echo. 70%% Completed.
