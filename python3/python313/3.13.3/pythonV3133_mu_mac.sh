@@ -55,17 +55,12 @@ cd $HOME
 #############################
 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user wheel scrapy
 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user pipx
-#/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user pandas_datareader requests ta scipy numpy plotly
-#/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user pandas matplotlib
-#/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install --user wikipedia wordcloud
-##############################
-# Cant get some of these installed without XCode
-# python3 -m pip install --user SOFTWARE
+/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user pandas polars matplotlib
+/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m pip install --user scikit-learn
 ##############################
 
 #############################
-# Creating directories
+# Printing version
 #############################
-# mkdir -p ~/itec109/{labs,hws}
 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -V
 echo "DONE."
