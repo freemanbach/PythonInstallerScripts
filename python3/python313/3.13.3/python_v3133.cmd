@@ -53,7 +53,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.13.3 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-%major%.%minor%.%patch% x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
@@ -185,7 +185,7 @@ cls
             echo.
             goto section_5
         ) else (
-            echo. We dont know where bitsadmin 32bit is located.
+            echo. We dont know where bitsadmin 64bit is located.
             echo. line 182
             goto end
         )

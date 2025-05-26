@@ -53,7 +53,7 @@ cls
     set _value="n"
     echo. **** As stated from the Python Community, the ARM 64 bit Python Installer  ****
     echo. **** is Experimental in the present State.                                 ****
-    set /p _value=Are you sure installing Python-3.13.3 x86_64, x86 or ARM64 (y/[n]) ?
+    set /p _value=Are you sure installing Python-%major%.%minor%.%patch% x86_64, x86 or ARM64 (y/[n]) ?
     if /i "%_value%" NEQ "y" goto end
 
 :: This batch file will show details Windows 10
@@ -235,17 +235,17 @@ cls
 :: Section 5: Python Download.
 :check_arch
     echo.
-    if /i "%processor_architecture%"=="x86" (
-            rem Run 32bit downloader
-            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe %~dp0python-%major%.%minor%.%patch%.exe
+    if /i "%processor_architecture%"=="arm64" (
+            rem Run 64bit downloader
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe %~dp0python-%major%.%minor%.%patch%-arm64.exe
         ) 
     if /i "%processor_architecture%"=="amd64" (
             rem Run 64bit downloader
             %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-amd64.exe %~dp0python-%major%.%minor%.%patch%-amd64.exe
         )
-    if /i "%processor_architecture%"=="arm64" (
-            rem Run 64bit downloader
-            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%-arm64.exe %~dp0python-%major%.%minor%.%patch%-arm64.exe
+    if /i "%processor_architecture%"=="x86" (
+            rem Run 32bit downloader
+            %badmin% /transfer PythonDownload /download /priority normal https://www.python.org/ftp/python/%major%.%minor%.%patch%/python-%major%.%minor%.%patch%.exe %~dp0python-%major%.%minor%.%patch%.exe
         )
     echo. 40%% Completed.
     echo.
@@ -370,14 +370,14 @@ cls
             echo.
             echo. Python has not been installed.
             echo.
-            echo. line 352
+            echo. line 363
             goto end
         )
     ) else (
         echo.
         echo. Python has not been installed.
         echo.
-        echo. line 351
+        echo. line 362
         echo.
         goto end
     )
