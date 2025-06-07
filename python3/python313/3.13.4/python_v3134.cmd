@@ -418,8 +418,10 @@ cls
     timeout /t 2 > nul
     C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user wheel scrapy
     timeout /t 2 > nul
-    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx bs4
+    C:\Python%major%%minor%%patch%\Scripts\pip.exe install --user pipx bs4 uv
     timeout /t 2 > nul
+    C:\Python%major%%minor%%patch%\python.exe -m pipx install poetry 
+    timeout /t 1 > nul
     echo. 85%% Completed.
     echo.
 
