@@ -1,18 +1,30 @@
 @echo OFF
+REM -----------------------------------------------------------------------------------
+rem Auth          : Freeman
+rem Email         : flo@radford.edu
+rem DESC          : Install Jupyter NoteBook with Miniconda (Windows)
+rem 32bit path    : https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86.exe
+rem 64bit path    : https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe
+rem Date          : 20250609
+REM -----------------------------------------------------------------------------------
 
-REM Auth          : Freeman
-REM Email         : flo@radford.edu
-REM DESC          : Install Jupyter NoteBook with Miniconda (Windows)
-REM 32bit path    : https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86.exe
-REM 64bit path    : https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe
-REM Date          : 2023.09.04
-
-set badmin32=C:\Windows\System32\bitsadmin.exe
-set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
+::set badmin32=C:\Windows\System32\bitsadmin.exe
+::set badmin64=C:\Windows\SysWOW64\bitsadmin.exe
 
 set mc32=https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86.exe
 set mc64=https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe
 
+:: checking and saving the location of Bits-admin
+:: made detecting bitsadmin at run-time
+for /f %%i in ('where bitsadmin') do (
+    set badmin=%%i
+)
+if /i %badmin%=="" (
+    echo. There is no bitsadmin.
+    echo. Contact your Professor Hobbit.
+    echo.
+    goto end
+)
 
 :: Check Admin DOS PROMPT is available
 goto check_permission
@@ -53,9 +65,9 @@ cls
 :section_0
     setlocal
     title Installing MiniConda
-    timeout /t 1 > nul
+    timeout /t 2 > nul
     rem Switch to Downloads early on
-    cd C:\Users\%USERNAME%\Downloads
+    cd %~dp0
     echo. 5%% Completed.
 
 :time_pause2
@@ -63,39 +75,55 @@ cls
 
 :: Section 4: Bitsadmin Download.
 :section_1
-    setlocal
-    echo.
     echo. ============================
     echo. Checking Bitsadmin
     echo. ============================
     echo.
-
     REM forgot that 32bit Windows has a different location for bitsadmin
-    if /i "%processor_architecture%"=="x86" (
-        rem check 32bit FTP downloader
-        if exist %badmin32% (
-            echo. Bitsadmin 32bit is installed on your Windows 7/8/9/10/11 system.
-            echo. Will download MiniConda 
+    if /i "%processor_architecture%"=="arm64" (
+        rem check location of BitsAdmin
+        if exist %badmin% (
+            echo. Bitsadmin 64bit is installed on your Windows 10/11 system.
+            echo. Will download Python 3 software.
             echo.
-            goto section_2
-        ) else (
-            echo. We dont know where bitsadmin 32bit is located.
-            echo. line 74
-            goto end
-        )
-    ) else (
-        rem check 64bit FTP downloader
-        if exist %badmin64% (
-            echo. Bitsadmin 64bit is installed on your Windows 7/8/9/10/11 system.
-            echo. Will download MiniConda 
-            echo.
-            goto section_2
+            goto section_1_1
         ) else (
             echo. We dont know where bitsadmin 64bit is located.
-            echo. line 88
+            echo. line 85
+            goto end
+        )
+    ) 
+    
+    if /i "%processor_architecture%"=="amd64" (
+        rem check location of BitsAdmin
+        if exist %badmin% (
+            echo. Bitsadmin 64bit for ARM and AMD is installed on your Windows 10/11 system.
+            echo. Will download Python 3 software.
+            echo.
+            goto section_1_1
+        ) else (
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 99
             goto end
         )
     )           
+
+    if /i "%processor_architecture%"=="x86" (
+        rem check location of BitsAdmin
+        if exist %badmin% (
+            echo. Bitsadmin 32bit is installed on your Windows 10/11 system.
+            echo. Will download Python 3 software.
+            echo.
+            goto section_1_1
+        ) else (
+            echo. We dont know where bitsadmin 64bit is located.
+            echo. line 113
+            goto end
+        )
+    )
+
+:section_1_1
+    echo.          
     echo. 15%% Completed.
 
 :: Section 5: Python Download.
@@ -109,13 +137,18 @@ cls
 :: Section 5: Python Download.
 :check_arch
     echo.
+    if /i "%processor_architecture%"=="arm64" (
+            rem Run 64bit downloader even when its ARM processor just run x86_64 installer
+            %badmin% /transfer PythonDownload /download /priority normal %mc64% %~dp0Miniconda3-latest-Windows-x86_64.exe
+        ) 
+    if /i "%processor_architecture%"=="amd64" (
+            rem Run 64bit downloader
+            %badmin% /transfer PythonDownload /download /priority normal %mc64% %~dp0Miniconda3-latest-Windows-x86_64.exe
+        )
     if /i "%processor_architecture%"=="x86" (
             rem Run 32bit downloader
-            %badmin32% /transfer MiniCondaDownload /download /priority normal %mc32% C:\Users\%USERNAME%\Downloads\Miniconda3-latest-Windows-x86.exe
-        ) else (
-            rem Run 64bit downloader
-            %badmin64% /transfer MiniCondaDownload /download /priority normal %mc64% C:\Users\%USERNAME%\Downloads\Miniconda3-latest-Windows-x86_64.exe
-        )           
+            %badmin% /transfer PythonDownload /download /priority normal %mc32% %~dp0Miniconda3-latest-Windows-x86.exe
+        )
     echo.  25%% Completed.
     echo.
 
@@ -133,11 +166,11 @@ cls
             echo. MiniConda executable has been Found.
             echo. Will now Install this Software.
             echo.
-            goto section_4
+            goto section_3_1
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
-            echo. line 132
+            echo. line 164
             echo.
             goto end
         )
@@ -146,7 +179,7 @@ cls
             echo. MiniConda executable has been Found.
             echo. Will now Install this Software.
             echo.
-            goto section_4
+            goto section_3_1
         ) else (
             echo. Software not found.
             echo. Perhaps, try to run this file again.
@@ -155,6 +188,8 @@ cls
             goto end
         )
     )
+
+:section_3_1
     echo.  35%% Completed.
     echo.
 
@@ -173,10 +208,10 @@ cls
     echo.
     echo. Go grab Koffee or something, installion will take sometime.
     if /i "%processor_architecture%"=="x86" (
-        C:\Users\%USERNAME%\Downloads\Miniconda3-latest-Windows-x86.exe
+         %~dp0Miniconda3-latest-Windows-x86.exe
         timeout /t 2 > nul
     ) else (
-        C:\Users\%USERNAME%\Downloads\Miniconda3-latest-Windows-x86_64.exe
+         %~dp0Miniconda3-latest-Windows-x86_64.exe
         timeout /t 2 > nul
     )
     echo. 45%% Completed.
@@ -192,23 +227,20 @@ cls
         if exist C:\Users\%USERNAME%\miniconda3\condabin\activate.bat (
             echo.
             echo. Checking whether MiniConda has been installed...
-            echo.
             echo. MiniConda Software has been Installed.
             echo.
         ) else (
             echo.
             echo. MiniConda has not been installed.
-            echo.
             echo. Problem with installation. 
-            echo. line 192
+            echo. line 226
             goto end
         )
     ) else (
         echo.
         echo. MiniConda has not been installed.
-        echo.
         echo. Problem with installation. 
-        echo. line 191
+        echo. line 225
         echo.
         goto end
     )
@@ -223,7 +255,7 @@ cls
     echo. Compiling Miniconda Modules
     echo. =======================================
     echo.
-    set num=20
+    set num=15
     for /L %%I IN (1, 1, %num%) do (
         echo. | set /p="%%I " 
         timeout /t 1 > nul
