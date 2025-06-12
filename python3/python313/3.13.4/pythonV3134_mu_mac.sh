@@ -24,7 +24,7 @@ curl -C - -O https://www.python.org/ftp/python/3.13.4/python-3.13.4-macos11.pkg
 ###############################
 # install Python Software
 echo "Enter in your normal login password, when prompted !"
-sudo installer -verboseR -pkg python-3.13.3-macos11.pkg -target /Applications
+sudo installer -verboseR -pkg python-3.13.4-macos11.pkg -target /Applications
 ###############################
 
 ###############################
