@@ -62,5 +62,6 @@ cd $HOME
 #############################
 # Printing version
 #############################
+/Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -c "import sys; print(sys.executable)"
 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -V
 echo "DONE."

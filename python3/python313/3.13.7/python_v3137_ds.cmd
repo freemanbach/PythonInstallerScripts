@@ -502,7 +502,8 @@ cls
     echo. Run the runme.bat in your home directory file each time 
     echo. you want to execute Python on the Command Prompt.   
     python -V
-    echo.
+    echo. Install Location
+    python -c "import sys; print(sys.executable)" 
     echo.
 
 :: complete 
