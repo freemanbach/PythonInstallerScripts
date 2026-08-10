@@ -1,7 +1,7 @@
 ##############################################################################################################
 # Author   : Freeman
 # email    : flo@radford.edu
-# Date     : 2025.03.25
+# Date     : 20260810
 # desc     : Pull the 7z archive ruby package to your PC and explode it to your home dir
 # comments : You can certainly alter this code to get the devkit executable binary version with an installer.
 # binary   : 
