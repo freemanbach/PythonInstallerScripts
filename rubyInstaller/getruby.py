@@ -2,10 +2,11 @@
 # Author   : Freeman
 # email    : flo@radford.edu
 # Date     : 2025.03.25
-# desc     : Pull the 7z archive ruby package to your Pc and extract it to your home location
+# desc     : Pull the 7z archive ruby package to your PC and explode it to your home dir
 # comments : You can certainly alter this code to get the devkit executable binary version with an installer.
-# binary   : https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.6-2/rubyinstaller-devkit-3.3.6-2-x64.exe
+# binary   : 
 ##############################################################################################################
+import subprocess
 import sys, os, re
 import shutil, hashlib
 
@@ -176,6 +177,13 @@ def main():
     checksum(fl)
     extractFile(fl)
     copyFiles(rf)
+
+    rubybin = home_dir + "\\" + "ruby\\bin\\ruby.exe"
+    try:
+        print( subprocess.run( [rubybin, "--version"], text=True) )
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with exit code {e.returncode}")
+    
     # leaving the 7z package file around
     # os.remove(fl)
 
